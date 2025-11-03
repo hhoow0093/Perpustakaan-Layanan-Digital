@@ -1,6 +1,5 @@
 # Database Schema
-
-<pre>```mermaid
+```mermaid
 
 erDiagram
 
@@ -76,5 +75,4 @@ erDiagram
     MAHASISWA }|--|| USER_AKUN : "memiliki" 
     DOSEN }|--|| USER_AKUN : "memiliki" 
 
-
-```</pre>
+```
