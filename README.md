@@ -1,5 +1,7 @@
 # Database Schema
 
+---
+
 ## Mermaid Live editor
 
 ```mermaid
@@ -79,6 +81,8 @@ erDiagram
     DOSEN }|--|| USER_AKUN : "memiliki" 
 
 ```
+---
+
 ## PHPAdmin Schema
 [![Screenshot-2025-11-03-175717.png](https://i.postimg.cc/nz1BPFBJ/Screenshot-2025-11-03-175717.png)](https://postimg.cc/62y87NMj)
 
