@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getUsers } from "../services/UserService.js";
 
-export default function useUsers() {
+export function GetAllUsersHooks() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

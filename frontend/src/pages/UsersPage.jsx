@@ -1,7 +1,7 @@
-import useUsers from "../hooks/useUsers";
+import { GetAllUsersHooks } from "../hooks/useUsers";
 
 export default function UsersPage() {
-  const { data: users, loading, error } = useUsers();
+  const { data: users, loading, error } = GetAllUsersHooks();
 
   if (loading) return <p>Loading users...</p>;
   if (error) return <p className="text-red-500">Error: {error}</p>;
