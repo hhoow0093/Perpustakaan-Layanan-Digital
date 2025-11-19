@@ -9,7 +9,7 @@ const formatUserID = (num) => {
 
 export const userService = {
     async getAllUsers() { 
-        const [rows] = await db.query("SELECT UserID, email FROM user_akun");
+        const [rows] = await db.query("SELECT UserID, email, role FROM user_akun");
         return rows
     },
 
@@ -79,9 +79,11 @@ export const userService = {
             throw err;
         }
 
-        const [rows] = await db.query(`SELECT * FROM ${role} WHERE ${id} = ?`, [nomorInduk]);
+        // Convert role to uppercase for table name
+        const tableName = role.toUpperCase();
+        const [rows] = await db.query(`SELECT * FROM ${tableName} WHERE ${id} = ?`, [nomorInduk]);
         if (rows.length === 0) {
-            const err = new Error(`tabel dan field tidak sesuai`);
+            const err = new Error(`Nomor induk ${nomorInduk} tidak ditemukan dalam sistem`);
             err.status = 400;
             throw err;
         }
@@ -116,7 +118,7 @@ export const userService = {
             [NewestID, email, hashedPassword, insertAdminOrUser]
         );
         await db.query(
-            `UPDATE ${role} SET UserID = ? WHERE ${id} = ?`, 
+            `UPDATE ${tableName} SET UserID = ? WHERE ${id} = ?`, 
             [NewestID, nomorInduk]
         );
         return { message: "telah berhasil membuat user baru" };
