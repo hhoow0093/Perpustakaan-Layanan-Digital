@@ -1,14 +1,14 @@
 INSERT INTO USER_AKUN (UserID, email, password, role) VALUES
-('USR0001', 'admin1@campus.com', 'contohPasswordDummy', 'admin'),
-('USR0002', 'dosen1@campus.com', 'contohPasswordDummy', 'user'),
-('USR0003', 'dosen2@campus.com', 'contohPasswordDummy', 'user'),
-('USR0004', 'dosen3@campus.com', 'contohPasswordDummy', 'user'),
-('USR0005', 'mhs1@campus.com', 'contohPasswordDummy', 'user'),
-('USR0006', 'mhs2@campus.com', 'contohPasswordDummy', 'user'),
-('USR0007', 'mhs3@campus.com', 'contohPasswordDummy', 'user'),
-('USR0008', 'staff1@campus.com', 'contohPasswordDummy', 'admin'),
-('USR0009', 'staff2@campus.com', 'contohPasswordDummy', 'admin'),
-('USR0010', 'staff3@campus.com', 'contohPasswordDummy', 'admin');
+('USR0001', 'admin1@campus.com', 'pass123', 'admin'),
+('USR0002', 'dosen1@campus.com', 'pass123', 'user'),
+('USR0003', 'dosen2@campus.com', 'pass123', 'user'),
+('USR0004', 'dosen3@campus.com', 'pass123', 'user'),
+('USR0005', 'mhs1@campus.com', 'pass123', 'user'),
+('USR0006', 'mhs2@campus.com', 'pass123', 'user'),
+('USR0007', 'mhs3@campus.com', 'pass123', 'user'),
+('USR0008', 'staff1@campus.com', 'pass123', 'admin'),
+('USR0009', 'staff2@campus.com', 'pass123', 'admin'),
+('USR0010', 'staff3@campus.com', 'pass123', 'admin');
 
 
 INSERT INTO DOSEN (NID, Nama_depan, Nama_belakang, Jenis_kelamin, Prodi, UserID) VALUES

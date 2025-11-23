@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 export default function RegisterPage() { 
     const [role, setRole] = useState("");
     const [nomorInduk, setNomorInduk] = useState("");
+    const [nomorIndukError, setNomorIndukError] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -26,6 +27,29 @@ export default function RegisterPage() {
         currentIcon: confirmCurrentIcon,
         togglePassword: toggleConfirmPasswordVisibility
     } = usePasswordToggle();
+
+    // Validate nomor induk format
+    const validateNomorInduk = (value) => {
+        setNomorInduk(value.toUpperCase());
+        
+        if (!value) {
+            setNomorIndukError("");
+            return;
+        }
+
+        // Check if nomor induk starts with correct prefix
+        if (role === "Mahasiswa" && !value.toUpperCase().includes("MHS")) {
+            setNomorIndukError("Nomor induk harus dimulai dengan MHS");
+        } else if (role === "Dosen" && !value.toUpperCase().includes("DSN")) {
+            setNomorIndukError("Nomor induk harus dimulai dengan DSN");
+        } else if (role === "Staff" && !value.toUpperCase().includes("STF")) {
+            setNomorIndukError("Nomor induk harus dimulai dengan STF");
+        } else if (!role) {
+            setNomorIndukError("Pilih tipe user terlebih dahulu");
+        } else {
+            setNomorIndukError("");
+        }
+    };
 
     // password validator
     useEffect(() => {
@@ -96,31 +120,47 @@ export default function RegisterPage() {
 
                     { /* Nomor induk */}
                     <div className="flex w-full flex-col py-2 gap-2">
-                        <label htmlFor="nomor-induk">Nomor Induk</label>
+                        <label htmlFor="nomor-induk" className="font-medium text-gray-700">
+                            Nomor Induk
+                            <span className="text-xs text-gray-500 ml-2">
+                                {role === "Mahasiswa" && "(MHS0001-MHS9999)"}
+                                {role === "Dosen" && "(DSN0001-DSN9999)"}
+                                {role === "Staff" && "(STF0001-STF9999)"}
+                                {!role && "(Pilih tipe user dulu)"}
+                            </span>
+                        </label>
                         <input
                             type="text"
                             name="nomor-induk"
                             id="nomor-induk" 
-                            className="appearance-none border-2 border-gray-400 rounded p-2 focus:outline-none focus:border-blue-500" 
-                            onChange={(e) => setNomorInduk(e.target.value)}
+                            className={`appearance-none border-2 rounded p-2 focus:outline-none bg-white uppercase ${
+                                nomorIndukError ? 'border-red-500 focus:border-red-500' : 'border-gray-400 focus:border-blue-500'
+                            } text-gray-900`}
+                            placeholder="Contoh: MHS0001"
+                            value={nomorInduk}
+                            onChange={(e) => validateNomorInduk(e.target.value)}
                         />
+                        {nomorIndukError && (
+                            <p className="text-red-500 text-sm mt-1">{nomorIndukError}</p>
+                        )}
                     </div>
 
                     {/* Email */}
                     <div className="flex w-full flex-col py-2 gap-2">
-                        <label htmlFor="user-email" className="font-medium">Email address</label>
+                        <label htmlFor="user-email" className="font-medium text-gray-700">Email address</label>
                         <input
                             type="email"
                             name="user-email"
                             id="user-email" 
-                            className="appearance-none border-2 border-gray-400 rounded p-2 focus:outline-none focus:border-blue-500"
+                            className="appearance-none border-2 border-gray-400 rounded p-2 focus:outline-none focus:border-blue-500 bg-white text-gray-900"
+                            placeholder="nama@email.com"
                             onChange={(e) => { setEmail(e.target.value)}}
                         />
                     </div>
 
                     {/* Password */}
                     <div className="flex w-full flex-col py-2 gap-2">
-                        <label htmlFor="password" className="font-medium">Password</label>
+                        <label htmlFor="password" className="font-medium text-gray-700">Password</label>
                         <div className="pass-container relative">
                             <input 
                                 type={passwordInputType} 
@@ -128,11 +168,12 @@ export default function RegisterPage() {
                                 id="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className="w-full appearance-none border-2 border-gray-400 rounded p-2 focus:outline-none focus:border-blue-500 pr-10" 
+                                className="w-full appearance-none border-2 border-gray-400 rounded p-2 focus:outline-none focus:border-blue-500 pr-10 bg-white text-gray-900" 
+                                placeholder="Masukkan password"
                             />
                             <button 
                                 type="button" 
-                                className="toggle-password-button absolute top-0 right-0 bg-transparent focus:outline-none border-none rounded-full px-2"  
+                                className="toggle-password-button absolute top-0 right-0 bg-transparent focus:outline-none border-none rounded-full px-2 text-gray-600 hover:text-gray-800"  
                                 onClick={togglePasswordVisibility}
                             >
                                 <FontAwesomeIcon icon={passwordCurrentIcon} />
@@ -142,7 +183,7 @@ export default function RegisterPage() {
 
                     {/* Confirm Password */}
                     <div className="flex w-full flex-col py-2 gap-2">
-                        <label htmlFor="confirm-password" className="font-medium">Confirm password</label>
+                        <label htmlFor="confirm-password" className="font-medium text-gray-700">Confirm password</label>
                         <div className="pass-container relative">
                             <input 
                                 type={confirmInputType} 
@@ -150,13 +191,14 @@ export default function RegisterPage() {
                                 id="confirm-password"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
-                                className={`w-full appearance-none border-2 rounded p-2 focus:outline-none pr-10 ${
+                                className={`w-full appearance-none border-2 rounded p-2 focus:outline-none pr-10 bg-white text-gray-900 ${
                                     passwordError ? 'border-red-500 focus:border-red-500' : 'border-gray-400 focus:border-blue-500'
                                 }`} 
+                                placeholder="Konfirmasi password"
                             />
                             <button 
                                 type="button" 
-                                className="toggle-password-button absolute top-0 right-0 bg-transparent focus:outline-none border-none rounded-full px-2"  
+                                className="toggle-password-button absolute top-0 right-0 bg-transparent focus:outline-none border-none rounded-full px-2 text-gray-600 hover:text-gray-800"  
                                 onClick={toggleConfirmPasswordVisibility}
                             >
                                 <FontAwesomeIcon icon={confirmCurrentIcon} />
@@ -180,8 +222,8 @@ export default function RegisterPage() {
                     <div className="submit-button-container w-full">
                         <button 
                             type="submit" 
-                            className="bg-blue-600 text-white font-bold w-full hover:bg-blue-500 disabled:opacity-50 "
-                            disabled={passwordError || password === "" || confirmPassword === "" || role === "" || nomorInduk === "" || email === ""}
+                            className="bg-blue-600 text-white font-bold w-full hover:bg-blue-500 disabled:opacity-50 rounded-lg py-3 transition duration-200"
+                            disabled={passwordError || password === "" || confirmPassword === "" || role === "" || nomorInduk === "" || email === "" || nomorIndukError !== ""}
                             onClick={handleSubmitForm}
                         >
                             Sign up 

@@ -1,0 +1,194 @@
+/* Admin Dashboard Specific Styles */
+
+/* Main Container */
+.admin-dashboard {
+  min-height: 100vh;
+  background-color: white;
+}
+
+/* Tabs */
+.tabs-container {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border: 2px solid #0070D9;
+}
+
+.tabs-header {
+  border-bottom: 2px solid #0070D9;
+}
+
+.tabs-nav {
+  display: flex;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s;
+  border: none;
+  border-bottom: 4px solid transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.tab-button svg {
+  font-size: 1rem;
+}
+
+.tab-button.active {
+  background-color: #0070D9;
+  color: white;
+  border-bottom-color: #0070D9;
+}
+
+.tab-button.active svg {
+  color: white;
+}
+
+.tab-button.inactive {
+  color: white;
+  background-color: #0056b3;
+}
+
+.tab-button.inactive svg {
+  color: white;
+}
+
+.tab-button.inactive:hover {
+  background-color: #004494;
+}
+
+/* Tables */
+.table-wrapper {
+  background-color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border: 2px solid #0070D9;
+  margin-top: 1.5rem;
+}
+
+.table-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid #0070D9;
+  background-color: white;
+}
+
+.table-title {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: #0070D9;
+}
+
+.table-subtitle {
+  font-size: 0.875rem;
+  color: #374151;
+  margin-top: 0.25rem;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+}
+
+.table-head {
+  background-color: #0070D9;
+}
+
+.table-head th {
+  text-align: left;
+  padding: 1rem 1.5rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.table-body {
+  border-top: 2px solid #d1d5db;
+}
+
+.table-row {
+  transition: background-color 0.15s;
+}
+
+.table-row.even {
+  background-color: white;
+}
+
+.table-row.even:hover {
+  background-color: #f3f4f6;
+}
+
+.table-row.odd {
+  background-color: #f9fafb;
+}
+
+.table-row.odd:hover {
+  background-color: #e5e7eb;
+}
+
+.table-cell {
+  padding: 1rem 1.5rem;
+  font-size: 0.875rem;
+}
+
+.table-cell.id {
+  color: #0070D9;
+  font-weight: 600;
+}
+
+.table-cell.name {
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+.table-cell.text {
+  color: #374151;
+}
+
+/* Status Badge */
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  display: inline-flex;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  font-weight: bold;
+  border-radius: 9999px;
+  border: 2px solid #0070D9;
+}
+
+.status-badge.returned {
+  background-color: #d4edda;
+  color: #155724;
+  border-color: #155724;
+}
+
+.status-badge.borrowed {
+  background-color: #fff3cd;
+  color: #856404;
+  border-color: #856404;
+}
+
+.status-badge.admin {
+  background-color: #0070D9;
+  color: white;
+  border-color: #0070D9;
+}
+
+.status-badge.user {
+  background-color: white;
+  color: #0070D9;
+  border-color: #0070D9;
+}

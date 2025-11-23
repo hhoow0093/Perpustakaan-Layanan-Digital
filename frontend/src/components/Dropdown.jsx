@@ -7,9 +7,9 @@ export default function Dropdown({ label, options, value, onChange }) {
       <select
         value={value}
         onChange={onChange}
-        className="p-2 border-gray-400 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 "
+        className="p-2 border-gray-400 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900"
       >
-        <option value="">-- Choose an option --</option>
+        <option value="">-- Pilih tipe user --</option>
         {options.map((opt, idx) => (
           <option key={idx} value={opt.value}>
             {opt.label}

@@ -71,14 +71,15 @@ export default function LoginPage() {
                         <h3 className="text-center text-md text-gray-600">Sign in</h3>
                     </div>
                     <div className="flex w-full flex-col py-2 gap-2">
-                        <label htmlFor="user-email" className="font-medium">email address </label>
+                        <label htmlFor="user-email" className="font-medium text-gray-700">Email address</label>
                         <input
                             type="text"
                             name="user-email"
                             id="user-email"
-                            className={`appearance-none border-2 border-gray-400 rounded p-2 focus:outline-none ${
+                            className={`appearance-none border-2 rounded p-2 focus:outline-none bg-white text-gray-900 ${
                                     emailError ? 'border-red-500 focus:border-red-500' : 'border-gray-400 focus:border-blue-500'
                                 }`}
+                            placeholder="nama@email.com"
                             onChange={(e) => { checkEmailValidity(e.target.value) }}
                         />
                         {emailError && (
@@ -86,16 +87,17 @@ export default function LoginPage() {
                         )}
                     </div>
                     <div className="flex w-full flex-col py-2 gap-2">
-                        <label htmlFor="password" className="font-medium">password </label>
+                        <label htmlFor="password" className="font-medium text-gray-700">Password</label>
                         <div className="pass-container relative ">
                             <input
                                 type={inputType}
                                 name="password"
                                 id="password"
-                                className="w-full appearance-none border-2 border-gray-400 rounded p-2 focus:outline-none focus:border-blue-500 pr-10"
+                                className="w-full appearance-none border-2 border-gray-400 rounded p-2 focus:outline-none focus:border-blue-500 pr-10 bg-white text-gray-900"
+                                placeholder="Masukkan password"
                                 onChange={(e) => { setPassword(e.target.value)}}
                             />
-                            <button type="button" className="toggle-password-button absolute top-0 right-0 bg-transparent focus:outline-none border-none rounded-full px-2"  onClick={togglePassword}>
+                            <button type="button" className="toggle-password-button absolute top-0 right-0 bg-transparent focus:outline-none border-none rounded-full px-2 text-gray-600 hover:text-gray-800"  onClick={togglePassword}>
                                 <FontAwesomeIcon icon={currentIcon} />
                             </button>
                         </div>
@@ -115,7 +117,7 @@ export default function LoginPage() {
                     <div className="submit-button-container w-full">
                         <button
                             type="submit"
-                            className="bg-blue-600 text-white font-bold w-full hover:bg-blue-500 disabled:opacity-50"
+                            className="bg-blue-600 text-white font-bold w-full hover:bg-blue-500 disabled:opacity-50 rounded-lg py-3 transition duration-200"
                             disabled={email === "" || password === ""}
                             onClick={handleLoginRequest}
                         >
