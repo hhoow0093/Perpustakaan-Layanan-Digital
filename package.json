@@ -1,0 +1,15 @@
+{
+  "name": "perpustakaan-layanan-digital",
+  "version": "1.0.0",
+  "description": "Digital Library Management System",
+  "scripts": {
+    "start": "start.bat",
+    "stop": "stop.bat",
+    "backend": "cd backend && npm run dev",
+    "frontend": "cd frontend && npm run dev",
+    "install-all": "cd backend && npm install && cd ../frontend && npm install"
+  },
+  "keywords": ["library", "digital", "perpustakaan"],
+  "author": "",
+  "license": "ISC"
+}
