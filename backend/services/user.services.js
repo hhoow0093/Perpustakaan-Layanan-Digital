@@ -1,6 +1,9 @@
 import { db } from "../config/db.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const formatUserID = (num) => {
     const paddedNum = String(num).padStart(4, '0'); 
@@ -27,7 +30,8 @@ export const userService = {
         return{ HighUserID: HighUserID };
     },
 
-    async HandleLoginService(email, password) { 
+async HandleLoginService(email, password) { 
+    try {
         const [existing] = await db.query("SELECT * FROM user_akun WHERE email = ?", [email]);
         
         if (existing.length === 0) { 
@@ -41,18 +45,20 @@ export const userService = {
         const match = await bcrypt.compare(password, HashPass);
         if (match) {
             const token = jwt.sign(
-                { userId: user.UserID, role: user.role }, // payload
-                process.env.JWT_SECRET, // your secret
-                { expiresIn: "1h" } // token valid for 1 hour
+                { userId: user.UserID, role: user.role },
+                process.env.JWT_SECRET,
+                { expiresIn: "1h" }
             );
             return { message: "selamat datang!", user: user, token: token }
-            
         } else { 
             const err = new Error("password salah")
             err.status = 400;
             throw err;
         }
-    },
+    } catch (error) {
+        throw error; // Re-throw to be caught by controller
+    }
+},
 
     async createNewUser(role, nomorInduk, email, password) { 
         const saltRounds = 10;
